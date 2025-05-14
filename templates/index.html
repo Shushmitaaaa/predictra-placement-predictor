@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Placement Prediction</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="logo"> <span>PREDICTRA</span></div>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- Home Section -->
+  <section id="home">
+    <header class="hero-section">
+      <div class="stars"></div>
+      <div class="stars2"></div>
+      <div class="stars3"></div>
+      <div class="hero-text">
+        <h1>YOUR CAREER, <span>PREDICTED.</span> YOUR FUTURE,<span>PREPARED.</span></h1>
+        <p>Welcome to PREDICTRA – where cutting-edge AI helps you predict your ideal placement.</p>
+        <a href="#form-section" class="btn">PREDICT</a>
+      </div>
+    </header>
+  </section>
+
+  <!-- Form Section -->
+  <section class="form-section" id="form-section">
+    <div class="stars"></div>
+    <div class="stars2"></div>
+    <div class="stars3"></div>
+
+    <h2>Placement Prediction App</h2>
+    <form action="/predict" method="POST" class="form-container">
+      <input type="number" name="cgpa" placeholder="CGPA" step="0.1" required />
+      <input type="text" name="projects" placeholder="Projects(Yes/No)" required />
+      <input type="number" name="certifications" placeholder="Certifications" required />
+      <input type="number" name="mini_projects" placeholder="Project Count" required />
+      <input type="text" name="skills" placeholder="Skills (e.g. Python, ML)" required />
+      <input type="number" name="Communication Skills Rating" placeholder="Communication Skills Rating" required />
+      <input type="text" name="internships" placeholder="Internships(Yes/No)" required />
+      <input type="text" name="hackathon" placeholder="Hackathon Participation (Yes/No)" required />
+      <input type="number" id="12th" name="12th percentage" placeholder="12th Percentage" min="0" max="100" step="0.01" required />
+      <input type="number" id="10th" name="10th percentage" placeholder="10th Percentage" min="0" max="100" step="0.01" required />
+      <input type="number" name="backlogs" placeholder="Backlogs" required />
+      <button type="submit">Predict Placement</button>
+    </form>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <div class="popup popup-{{ category }}">
+          {{ message }}
+        </div>
+      {% endfor %}
+    {% endif %}
+    {% endwith %}
+  </section>
+
+  <!-- About Section -->
+  <section class="about-section" id="about">
+    <div class="stars"></div>
+    <div class="stars2"></div>
+    <div class="stars3"></div>
+
+    <div class="about-container">
+      <h1 class="about-title">What is PREDICTRA?</h1>
+
+      <div class="about-steps">
+        <div class="about-step">
+          <h2 class="step-header">Step 1: Understand You</h2>
+          <p class="step-desc">We analyze your academic scores, skills, and interests — not just numbers, but your story.</p>
+        </div>
+
+        <div class="about-step">
+          <h2 class="step-header">Step 2: Predict Placement Odds</h2>
+          <p class="step-desc">Our AI model evaluates your chances of getting placed based on real data and trends — customized for you.</p>
+        </div>
+
+        <div class="about-step">
+          <h2 class="step-header">Step 3: Empower Your Journey</h2>
+          <p class="step-desc">We don’t just predict — we guide. Get insights to improve, grow, and move closer to your dream job.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hide popup when clicking outside -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      document.addEventListener("click", function (event) {
+        const popups = document.querySelectorAll(".popup");
+        popups.forEach(function (popup) {
+          if (!popup.contains(event.target)) {
+            popup.style.display = "none";
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
