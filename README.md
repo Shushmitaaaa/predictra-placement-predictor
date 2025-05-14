@@ -21,8 +21,6 @@ Try the live app here: https://predictra-placement-predictor.onrender.com
 
 To run this project locally, follow these steps:
 
-###  Installation
-
 1. **Clone the repository:**
 
    ```bash
@@ -36,9 +34,6 @@ To run this project locally, follow these steps:
    pip install -r requirements.txt
    ```
 
-
----
-Here’s a **project structure section** you can use in your `README.md` file for the project shown in your screenshot:
 
 ---
 
